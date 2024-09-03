@@ -23,6 +23,8 @@
 /**********************************************************************************************************************
 * History : DD.MM.YYYY Version  Description
 *         : 08.10.2019 1.00     First Release
+*         : 10.12.2019 1.01     Modified comment.
+*         : 18.05.2021 1.02     Modified bsp_swint_clear_task function and bsp_swint_clear_all_task function.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -657,7 +659,7 @@ static e_bsp_swint_err_t bsp_swint_clear_task(e_bsp_swint_unit_t unit, void * co
          * regardless of whether a task has been set in the task buffer. To avoid it, setting of the interrupt 
          * request occurs in this timing.
          */
-        R_BSP_SoftwareInterruptControl(unit, BSP_SWINT_CMD_SET_INTERRUPT_REQUEST, FIT_NO_PTR);
+        bsp_swint_set_interrupt_request(unit);
     }
     else
     {
@@ -727,7 +729,7 @@ static e_bsp_swint_err_t bsp_swint_clear_all_task(e_bsp_swint_unit_t unit)
              * regardless of whether a task has been set in the task buffer. To avoid it, setting of the interrupt 
              * request occurs in this timing.
              */
-            R_BSP_SoftwareInterruptControl(unit, BSP_SWINT_CMD_SET_INTERRUPT_REQUEST, FIT_NO_PTR);
+            bsp_swint_set_interrupt_request(unit);
         }
     }
     else
@@ -769,8 +771,8 @@ static void bsp_swint_get_all_task_status(e_bsp_swint_unit_t unit, void * const 
  * @brief This function controls software interrupts.
  * @param[in] unit Software interrupt unit
  * @param[in] cmd Software interrupt control command
- * @param[in] p_args Pointer to arguments for software interrupt control commands. Set the argument type to match each 
- * software interrupt control command. For commands that do not require arguments, use the setting FIT_NO_PTR.
+ * @param[in, out] p_args Pointer to arguments for software interrupt control commands. Set the argument type to match 
+ * each software interrupt control command. For commands that do not require arguments, use the setting FIT_NO_PTR.
  * @retval BSP_SWINT_SUCCESS Success.
  * @retval BSP_SWINT_ERR_INVALID_UNIT Invalid unit specified.
  * @retval BSP_SWINT_ERR_INVALID_IPR Invalid interrupt priority level specified.

@@ -141,6 +141,11 @@
 *         : 31.07.2019 5.40     Added support for GENERIC_RX23E-A.
 *         : 08.10.2019 5.50     Added support for GENERIC_RX72N, and GENERIC_RX66N.
 *                               Deleted the board folders of RSKRX63N.
+*         : 18.05.2021 6.11     Added support for GENERIC_RX671.
+*         : 30.06.2021 6.20     Added support for GENERIC_RX140.
+*         : 22.04.2022 7.20     Added support for GENERIC_RX660.
+*         : 28.02.2023 7.30     Added support for GENERIC_RX26T.
+*         : 10.03.2023 7.40     Added support for GENERIC_RX23E-B.
 ***********************************************************************************************************************/
 
 /* Multiple inclusion prevention macro */
@@ -156,11 +161,17 @@ DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
 /* GENERIC_RX65N */
 //#include "./board/generic_rx65n/r_bsp.h"
 
+/* GENERIC_RX660 */
+//#include "./board/generic_rx660/r_bsp.h"
+
 /* GENERIC_RX66N */
 //#include "./board/generic_rx66n/r_bsp.h"
 
 /* GENERIC_RX66T */
 //#include "./board/generic_rx66t/r_bsp.h"
+
+/* GENERIC_RX671 */
+//#include "./board/generic_rx671/r_bsp.h"
 
 /* GENERIC_RX71M */
 //#include "./board/generic_rx71m/r_bsp.h"
@@ -183,6 +194,9 @@ DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
 /* GENERIC_RX23E-A */
 //#include "./board/generic_rx23e-a/r_bsp.h"
 
+/* GENERIC_RX23E-B */
+//#include "./board/generic_rx23e-b/r_bsp.h"
+
 /* GENERIC_RX23T */
 //#include "./board/generic_rx23t/r_bsp.h"
 
@@ -194,6 +208,9 @@ DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
 
 /* GENERIC_RX24U */
 //#include "./board/generic_rx24u/r_bsp.h"
+
+/* GENERIC_RX26T */
+//#include "./board/generic_rx26t/r_bsp.h"
 
 /* GENERIC_RX111 */
 //#include "./board/generic_rx111/r_bsp.h"
@@ -209,6 +226,9 @@ DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
 
 /* GENERIC_RX13T */
 //#include "./board/generic_rx13t/r_bsp.h"
+
+/* GENERIC_RX140 */
+//#include "./board/generic_rx140/r_bsp.h"
 
 /* User Board - Define your own board here. */
 //#include "./board/user/r_bsp.h"

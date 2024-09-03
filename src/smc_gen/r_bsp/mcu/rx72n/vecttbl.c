@@ -24,6 +24,11 @@
 /***********************************************************************************************************************
 * History : DD.MM.YYYY Version  Description
 *         : 08.10.2019 1.00     First Release
+*         : 30.06.2021 1.01     Added excep_address_isr in the Exception vector table.
+*         : 30.11.2021 1.02     Added the following macro definition and changed setting of SPCC register.
+*                               - BSP_PRV_SPCC_SPE
+*                               - BSP_PRV_SPCC_VALUE
+*         : 25.11.2022 1.03     Deleted the invalid function definition.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -43,7 +48,6 @@ Macro definitions
 Exported global functions (to be accessed by other files)
 ***********************************************************************************************************************/
 R_BSP_POR_FUNCTION(R_BSP_POWER_ON_RESET_FUNCTION);
-R_BSP_UB_POR_FUNCTION(R_BSP_UB_POWER_ON_RESET_FUNCTION);
 
 /***********************************************************************************************************************
 * The following array fills in the option function select registers, fixed vector table, and the ID code protection 
@@ -54,6 +58,14 @@ R_BSP_UB_POR_FUNCTION(R_BSP_UB_POWER_ON_RESET_FUNCTION);
 #else
     #define BSP_PRV_MDE_VALUE (0xffffffff)    /* little */
 #endif
+
+#if BSP_CFG_SERIAL_PROGRAMMER_CONECT_ENABLE == 0
+    #define BSP_PRV_SPCC_SPE   (0xf7ffffff)  /* Connection of a serial programmer after a reset is prohibited. */
+#else
+    #define BSP_PRV_SPCC_SPE   (0xffffffff)  /* Connection of a serial programmer after a reset is permitted. */
+#endif
+
+#define BSP_PRV_SPCC_VALUE    BSP_PRV_SPCC_SPE
 
 #if BSP_CFG_CODE_FLASH_BANK_MODE == 0
     #define BSP_PRV_BANK_MODE_VALUE (0xffffff8f)    /* dual */
@@ -90,7 +102,7 @@ const uint32_t __OFS0reg    = BSP_CFG_OFS0_REG_VALUE;
 const uint32_t __OFS1reg    = BSP_CFG_OFS1_REG_VALUE;
 const uint32_t __TMINFreg   = 0xffffffff;
 const uint32_t __BANKSELreg = BSP_PRV_START_BANK_VALUE;
-const uint32_t __SPCCreg    = 0xffffffff;
+const uint32_t __SPCCreg    = BSP_PRV_SPCC_VALUE;
 const uint32_t __TMEFreg    = BSP_CFG_TRUSTED_MODE_FUNCTION;
 const uint32_t __OSIS1reg   = BSP_CFG_ID_CODE_LONG_1;
 const uint32_t __OSIS2reg   = BSP_CFG_ID_CODE_LONG_2;
@@ -108,7 +120,7 @@ const st_ofsm_sec_ofs1_t __ofsm_sec_ofs1   __attribute__ ((section(".ofs1"))) = 
 };
 const uint32_t __TMINFreg   __attribute__ ((section(".ofs2"))) = 0xffffffff;
 const uint32_t __BANKSELreg __attribute__ ((section(".ofs3"))) = BSP_PRV_START_BANK_VALUE;
-const uint32_t __SPCCreg    __attribute__ ((section(".ofs4"))) = 0xffffffff;
+const uint32_t __SPCCreg    __attribute__ ((section(".ofs4"))) = BSP_PRV_SPCC_VALUE;
 const uint32_t __TMEFreg    __attribute__ ((section(".ofs5"))) = BSP_CFG_TRUSTED_MODE_FUNCTION;
 const st_ofsm_sec_ofs6_t __ofsm_sec_ofs6   __attribute__ ((section(".ofs6"))) = {
     BSP_CFG_ID_CODE_LONG_1, /* __OSIS1reg */
@@ -126,7 +138,7 @@ const uint32_t __ROMCODEreg __attribute__ ((section(".ofs8"))) = BSP_CFG_ROMCODE
 #pragma public_equ = "__OFS1", BSP_CFG_OFS1_REG_VALUE
 #pragma public_equ = "__TMINF", 0xffffffff
 #pragma public_equ = "__BANKSEL", BSP_PRV_START_BANK_VALUE
-#pragma public_equ = "__SPCC", 0xffffffff
+#pragma public_equ = "__SPCC", BSP_PRV_SPCC_VALUE
 #pragma public_equ = "__TMEF", BSP_CFG_TRUSTED_MODE_FUNCTION
 #pragma public_equ = "__OSIS_1", BSP_CFG_ID_CODE_LONG_1
 #pragma public_equ = "__OSIS_2", BSP_CFG_ID_CODE_LONG_2
@@ -174,7 +186,7 @@ R_BSP_ATTRIB_SECTION_CHANGE_EXCEPTVECT void (* const Except_Vectors[])(void) =
     excep_access_isr,                  /* 0x54  Exception(Access exception) */
     undefined_interrupt_source_isr,    /* 0x58  Reserved */
     excep_undefined_inst_isr,          /* 0x5c  Exception(Undefined Instruction) */
-    undefined_interrupt_source_isr,    /* 0x60  Reserved */
+    excep_address_isr,                 /* 0x60  Exception(Address exception) */
     excep_floating_point_isr,          /* 0x64  Exception(Floating Point) */
     undefined_interrupt_source_isr,    /* 0x68  Reserved */
     undefined_interrupt_source_isr,    /* 0x6c  Reserved */

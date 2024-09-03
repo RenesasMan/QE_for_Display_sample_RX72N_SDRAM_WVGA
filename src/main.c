@@ -44,7 +44,7 @@
  *******************************************************************************/
 #include "r_smc_entry.h"
 #include "r_glcdc_rx_if.h"
-#include "r_glcdc_rx_pinset.h"
+//#include "r_glcdc_rx_pinset.h"
 
 /* Header files for RSKRX72N board output by QE for Display [RX] */
 #include "r_image_config_RX72N_RSK.h"
@@ -59,7 +59,9 @@
 #define IMAGE_PIXEL_SIZE     (2u)    /* Graphic format: RGB565, 2 bytes per pixel */
 
 /* Frame buffer address of graphics 2 is the FRAME_BUFFER section top address */
-#define FRAME_BUF_BASE_ADDR  (__sectop("FRAME_BUFFER"))
+//#define FRAME_BUF_BASE_ADDR  (__sectop("FRAME_BUFFER"))
+//#define FRAME_BUF_BASE_ADDR  (__sectop("BEXRAM"))
+#define FRAME_BUF_BASE_ADDR  ((void*)(0x08000000))
 
 /* Pixel color code of RGB565 format, 2 bytes per pixel */
 #define PIXEL_COLOR_BLUE     (0x001F)
@@ -132,6 +134,7 @@ static void qe_for_display_parameter_set (glcdc_cfg_t * glcdc_qe_cfg);
 static void glcdc_callback (void * pdata);
 static void board_port_setting (void);
 static void frame_buffer_initialize (void);
+void R_GLCDC_PinSet(void);
 
 void main(void);
 
@@ -149,7 +152,7 @@ void main (void)
     volatile static uint16_t *sp_sdram_adr;      /* address pointer(SDRAM) */
     volatile static uint16_t s_sdram_data;       /* sdram write data (SDRAM) */
 
-    R_BSP_SoftwareDelay(100, BSP_DELAY_MILLISECS);
+    R_BSP_SoftwareDelay(100, BSP_DELAY_MICROSECS);
 
     /* ---- Initialize SDRAMC ---- */
     R_Config_BSC_InitializeSDRAM();
@@ -506,5 +509,99 @@ static void board_port_setting (void)
 	PORTK.PDR.BIT.B4 = 1;
 
 } /* End of function board_port_setting() */
+
+
+/***********************************************************************************************************************
+* Function Name: R_GLCDC_PinSet
+* Description  : This function initializes pins for r_glcdc_rx module
+* Arguments    : none
+* Return Value : none
+***********************************************************************************************************************/
+void R_GLCDC_PinSet()
+{
+    R_BSP_RegisterProtectDisable(BSP_REG_PROTECT_MPC);
+
+    /* Set LCD_CLK pin */
+    MPC.P14PFS.BYTE = 0x25U;
+    PORT1.PMR.BIT.B4 = 1U;
+
+    /* Set LCD_TCON0 pin */
+    MPC.P13PFS.BYTE = 0x25U;
+    PORT1.PMR.BIT.B3 = 1U;
+
+    /* Set LCD_TCON2 pin */
+    MPC.PJ2PFS.BYTE = 0x25U;
+    PORTJ.PMR.BIT.B2 = 1U;
+
+    /* Set LCD_TCON3 pin */
+    MPC.PJ1PFS.BYTE = 0x25U;
+    PORTJ.PMR.BIT.B1 = 1U;
+
+    /* Set LCD_DATA0 pin */
+    MPC.PJ0PFS.BYTE = 0x25U;
+    PORTJ.PMR.BIT.B0 = 1U;
+
+    /* Set LCD_DATA1 pin */
+    MPC.P85PFS.BYTE = 0x25U;
+    PORT8.PMR.BIT.B5 = 1U;
+
+    /* Set LCD_DATA2 pin */
+    MPC.P84PFS.BYTE = 0x25U;
+    PORT8.PMR.BIT.B4 = 1U;
+
+    /* Set LCD_DATA3 pin */
+    MPC.P57PFS.BYTE = 0x25U;
+    PORT5.PMR.BIT.B7 = 1U;
+
+    /* Set LCD_DATA4 pin */
+    MPC.P56PFS.BYTE = 0x25U;
+    PORT5.PMR.BIT.B6 = 1U;
+
+    /* Set LCD_DATA5 pin */
+    MPC.P55PFS.BYTE = 0x25U;
+    PORT5.PMR.BIT.B5 = 1U;
+
+    /* Set LCD_DATA6 pin */
+    MPC.P54PFS.BYTE = 0x25U;
+    PORT5.PMR.BIT.B4 = 1U;
+
+    /* Set LCD_DATA7 pin */
+    MPC.P11PFS.BYTE = 0x25U;
+    PORT1.PMR.BIT.B1 = 1U;
+
+    /* Set LCD_DATA8 pin */
+    MPC.P83PFS.BYTE = 0x25U;
+    PORT8.PMR.BIT.B3 = 1U;
+
+    /* Set LCD_DATA9 pin */
+    MPC.PC7PFS.BYTE = 0x25U;
+    PORTC.PMR.BIT.B7 = 1U;
+
+    /* Set LCD_DATA10 pin */
+    MPC.PC6PFS.BYTE = 0x25U;
+    PORTC.PMR.BIT.B6 = 1U;
+
+    /* Set LCD_DATA11 pin */
+    MPC.PC5PFS.BYTE = 0x25U;
+    PORTC.PMR.BIT.B5 = 1U;
+
+    /* Set LCD_DATA12 pin */
+    MPC.P82PFS.BYTE = 0x25U;
+    PORT8.PMR.BIT.B2 = 1U;
+
+    /* Set LCD_DATA13 pin */
+    MPC.P81PFS.BYTE = 0x25U;
+    PORT8.PMR.BIT.B1 = 1U;
+
+    /* Set LCD_DATA14 pin */
+    MPC.P80PFS.BYTE = 0x25U;
+    PORT8.PMR.BIT.B0 = 1U;
+
+    /* Set LCD_DATA15 pin */
+    MPC.PC4PFS.BYTE = 0x25U;
+    PORTC.PMR.BIT.B4 = 1U;
+
+    R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_MPC);
+}
 
 /* End of File */

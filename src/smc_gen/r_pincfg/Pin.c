@@ -106,10 +106,6 @@ void R_Pins_Create(void)
     /* Set CKE pin */
     PORT6.PMR.BYTE &= 0xDFU;
 
-    /* Set CLKOUT25M pin */
-    MPC.PH7PFS.BYTE = 0x2AU;
-    PORTH.PMR.BYTE |= 0x80U;
-
     /* Set D0 pin */
     PORTD.PMR.BYTE &= 0xFEU;
 
@@ -163,86 +159,6 @@ void R_Pins_Create(void)
 
     /* Set DQM1 pin */
     PORT6.PMR.BYTE &= 0x7FU;
-
-    /* Set LCD_CLK pin */
-    MPC.P14PFS.BYTE = 0x25U;
-    PORT1.PMR.BYTE |= 0x10U;
-
-    /* Set LCD_DATA0 pin */
-    MPC.PJ0PFS.BYTE = 0x25U;
-    PORTJ.PMR.BYTE |= 0x01U;
-
-    /* Set LCD_DATA1 pin */
-    MPC.P85PFS.BYTE = 0x25U;
-    PORT8.PMR.BYTE |= 0x20U;
-
-    /* Set LCD_DATA2 pin */
-    MPC.P84PFS.BYTE = 0x25U;
-    PORT8.PMR.BYTE |= 0x10U;
-
-    /* Set LCD_DATA3 pin */
-    MPC.P57PFS.BYTE = 0x25U;
-    PORT5.PMR.BYTE |= 0x80U;
-
-    /* Set LCD_DATA4 pin */
-    MPC.P56PFS.BYTE = 0x25U;
-    PORT5.PMR.BYTE |= 0x40U;
-
-    /* Set LCD_DATA5 pin */
-    MPC.P55PFS.BYTE = 0x25U;
-    PORT5.PMR.BYTE |= 0x20U;
-
-    /* Set LCD_DATA6 pin */
-    MPC.P54PFS.BYTE = 0x25U;
-    PORT5.PMR.BYTE |= 0x10U;
-
-    /* Set LCD_DATA7 pin */
-    MPC.P11PFS.BYTE = 0x25U;
-    PORT1.PMR.BYTE |= 0x02U;
-
-    /* Set LCD_DATA8 pin */
-    MPC.P83PFS.BYTE = 0x25U;
-    PORT8.PMR.BYTE |= 0x08U;
-
-    /* Set LCD_DATA9 pin */
-    MPC.PC7PFS.BYTE = 0x25U;
-    PORTC.PMR.BYTE |= 0x80U;
-
-    /* Set LCD_DATA10 pin */
-    MPC.PC6PFS.BYTE = 0x25U;
-    PORTC.PMR.BYTE |= 0x40U;
-
-    /* Set LCD_DATA11 pin */
-    MPC.PC5PFS.BYTE = 0x25U;
-    PORTC.PMR.BYTE |= 0x20U;
-
-    /* Set LCD_DATA12 pin */
-    MPC.P82PFS.BYTE = 0x25U;
-    PORT8.PMR.BYTE |= 0x04U;
-
-    /* Set LCD_DATA13 pin */
-    MPC.P81PFS.BYTE = 0x25U;
-    PORT8.PMR.BYTE |= 0x02U;
-
-    /* Set LCD_DATA14 pin */
-    MPC.P80PFS.BYTE = 0x25U;
-    PORT8.PMR.BYTE |= 0x01U;
-
-    /* Set LCD_DATA15 pin */
-    MPC.PC4PFS.BYTE = 0x25U;
-    PORTC.PMR.BYTE |= 0x10U;
-
-    /* Set LCD_TCON0 pin */
-    MPC.P13PFS.BYTE = 0x25U;
-    PORT1.PMR.BYTE |= 0x08U;
-
-    /* Set LCD_TCON2 pin */
-    MPC.PJ2PFS.BYTE = 0x25U;
-    PORTJ.PMR.BYTE |= 0x04U;
-
-    /* Set LCD_TCON3 pin */
-    MPC.PJ1PFS.BYTE = 0x25U;
-    PORTJ.PMR.BYTE |= 0x02U;
 
     /* Set RAS# pin */
     PORT6.PMR.BYTE &= 0xFBU;

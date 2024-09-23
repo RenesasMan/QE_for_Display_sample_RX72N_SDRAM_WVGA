@@ -870,9 +870,9 @@
                         <item id="15" input="15" vlaue="15"/>
                     </option>
                     <option enabled="true" id="AutorefreshRequestInterval" selection="AutorefreshRequestInterval">
-                        <item id="AutorefreshRequestInterval" input="1249" vlaue="1249"/>
+                        <item id="AutorefreshRequestInterval" input="936" vlaue="936"/>
                     </option>
-                    <option enabled="true" id="AutorefreshCycleselfrefreshClearing" selection="1">
+                    <option enabled="true" id="AutorefreshCycleselfrefreshClearing" selection="4">
                         <item id="1" input="1" vlaue="1"/>
                         <item id="2" input="2" vlaue="2"/>
                         <item id="3" input="3" vlaue="3"/>
@@ -890,7 +890,7 @@
                         <item id="15" input="15" vlaue="15"/>
                         <item id="16" input="16" vlaue="16"/>
                     </option>
-                    <option enabled="true" id="InitializationAutorefreshInterval" selection="3">
+                    <option enabled="true" id="InitializationAutorefreshInterval" selection="4">
                         <item id="3" input="3" vlaue="3"/>
                         <item id="4" input="4" vlaue="4"/>
                         <item id="5" input="5" vlaue="5"/>
@@ -918,22 +918,22 @@
                         <item id="9" input="9" vlaue="9"/>
                         <item id="10" input="10" vlaue="10"/>
                     </option>
-                    <option enabled="true" id="SdramcColumnLatency" selection="1">
+                    <option enabled="true" id="SdramcColumnLatency" selection="3">
                         <item id="1" input="1" vlaue="1"/>
                         <item id="2" input="2" vlaue="2"/>
                         <item id="3" input="3" vlaue="3"/>
                     </option>
-                    <option enabled="true" id="WriteRecoveryInterval" selection="1">
+                    <option enabled="true" id="WriteRecoveryInterval" selection="2">
                         <item id="1" input="1" vlaue="1"/>
                         <item id="2" input="2" vlaue="2"/>
                     </option>
-                    <option enabled="true" id="RowColumnLatency" selection="1">
+                    <option enabled="true" id="RowColumnLatency" selection="2">
                         <item id="1" input="1" vlaue="1"/>
                         <item id="2" input="2" vlaue="2"/>
                         <item id="3" input="3" vlaue="3"/>
                         <item id="4" input="4" vlaue="4"/>
                     </option>
-                    <option enabled="true" id="RowprechargeInterval" selection="1">
+                    <option enabled="true" id="RowprechargeInterval" selection="2">
                         <item id="1" input="1" vlaue="1"/>
                         <item id="2" input="2" vlaue="2"/>
                         <item id="3" input="3" vlaue="3"/>
@@ -943,7 +943,7 @@
                         <item id="7" input="7" vlaue="7"/>
                         <item id="8" input="8" vlaue="8"/>
                     </option>
-                    <option enabled="true" id="RowActiveInterval" selection="1">
+                    <option enabled="true" id="RowActiveInterval" selection="3">
                         <item id="1" input="1" vlaue="1"/>
                         <item id="2" input="2" vlaue="2"/>
                         <item id="3" input="3" vlaue="3"/>

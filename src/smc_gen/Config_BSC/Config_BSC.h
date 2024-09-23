@@ -40,7 +40,7 @@ Macro definitions (Register bit)
 Macro definitions
 ***********************************************************************************************************************/
 /* SDRAM auto-refresh request interval value */
-#define _04E0_BSC_RFC_VALUE           (0x04E0U)
+#define _03A7_BSC_RFC_VALUE           (0x03A7U)
 /* SDRAM mode register value */
 #define _0230_BSC_MODE_REG_VALUE      (0x0230U)
 

@@ -36,6 +36,14 @@ Includes   <System Includes> , "Project Includes"
 /******************************************************************************
 Macro definitions
 ******************************************************************************/
+
+/* Image Size enumerations and definition */
+#define IMG_SIZE_VGA 1u
+#define IMG_SIZE_WVGA 2u
+#define IMG_SIZE_ACTIVE IMG_SIZE_WVGA
+
+#if (IMG_SIZE_ACTIVE == IMG_SIZE_VGA)
+
 #define     LCD_CH0_W_VSYNC         (10u)                    /* Vertical Pulse Width(VPW)                                   */
 #define     LCD_CH0_DISP_VS         (10u + 4u)                    /* LCD display area vertical start position
                                                                  = Vertical Pulse Width(VPW) + Vertical Back Porch(VBP)     */
@@ -65,6 +73,66 @@ Macro definitions
 
 #define     LCD_CH0_OUT_EDGE        (GLCDC_SIGNAL_SYNC_EDGE_RISING)       /* Output phase control of LCD_DATA signal(LCD_DATA_OUT_EDGE)  */
 #define     LCD_CH0_OUT_FORMAT      (GLCDC_OUT_FORMAT_16BITS_RGB565) /* LCD output format select (LCD_OUT_FORMAT)                */
+
+#elif (IMG_SIZE_ACTIVE == IMG_SIZE_WVGA)
+
+#define     LCD_CH0_OUT_CLK_DIV_RATIO     (GLCDC_PANEL_CLK_DIVISOR_32)    /* Division Ratio of LCD Panel Clock                 */
+
+#define     LCD_CH0_W_VSYNC               (3u)                    /* Vertical Pulse Width(VPW)                                   */
+#define     LCD_CH0_DISP_VS               (3u + 29u)                    /* LCD display area vertical start position
+                                                                 = Vertical Pulse Width(VPW) + Vertical Back Porch(VBP)     */
+#define     LCD_CH0_DISP_VW               (480u)                   /* Vertical Display Period(VDP)                                */
+
+#define     LCD_CH0_W_HSYNC               (48u)                    /* Horizontal Pulse Width(HPW)                                 */
+#define     LCD_CH0_DISP_HS               (48u + 40u)                    /* LCD display area horizontal start position
+                                                                 = Horizontal Pulse Width(HPW) + Horizontal Back Porch(HBP) */
+#define     LCD_CH0_DISP_HW               (800u)                   /* Horizontal Display Period(HDP)                              */
+
+#define     LCD_CH0_SIG_FV                (525u)              /* Vertical Total Period(VTP)                                  */
+#define     LCD_CH0_SIG_FH                (928u)             /* Horizontal Total Period(HTP)                                */
+
+#define     LCD_CH0_W_VFP                 (13u)             /* Vertical Front Porch(VFP)                                   */
+#define     LCD_CH0_W_HFP                 (40u)             /* Horizontal Front Porch(HFP)                                 */
+
+#define     LCD_CH0_W_VBP                 (29u)             /* Vertical Back Porch(VBP)                                  */
+#define     LCD_CH0_W_HBP                 (40u)             /* Horizontal Back Porch(HBP)                                */
+
+#define     LCD_CH0_TCON_PIN_VSYNC        (GLCDC_TCON_PIN_0)      /* Select TCON of a Vsync signal (Vsync_TCON_select)           */
+#define     LCD_CH0_TCON_PIN_HSYNC        (GLCDC_TCON_PIN_2)      /* Select TCON of a Hsync signal (Hsync_TCON_select)           */
+#define     LCD_CH0_TCON_PIN_DE           (GLCDC_TCON_PIN_3)      /* Select TCON of a DE signal    (DE_TCON_select)              */
+
+#define     LCD_CH0_TCON_POL_VSYNC        (GLCDC_SIGNAL_POLARITY_LOACTIVE)    /* Select polarity of a Vsync signal (Vsync_POL)               */
+#define     LCD_CH0_TCON_POL_HSYNC        (GLCDC_SIGNAL_POLARITY_LOACTIVE)    /* Select polarity of a Hsync signal (Hsync_POL)               */
+#define     LCD_CH0_TCON_POL_DE           (GLCDC_SIGNAL_POLARITY_HIACTIVE)/* Select polarity of a Hsync signal (DE_POL)                  */
+
+#define     LCD_CH0_OUT_EDGE              (GLCDC_SIGNAL_SYNC_EDGE_FALLING)       /* Output phase control of LCD_DATA signal(LCD_DATA_OUT_EDGE)  */
+#define     LCD_CH0_OUT_FORMAT            (GLCDC_OUT_FORMAT_16BITS_RGB565) /* LCD output format select (LCD_OUT_FORMAT)                */
+#define     LCD_CH0_OUT_BG_COLOR          (0x00000000)               /* Set a background color                                      */
+#define     LCD_CH0_OUT_ENDIAN            (GLCDC_ENDIAN_LITTLE)      /* Select Bit-endian of Output Data                            */
+#define     LCD_CH0_OUT_COLOR_ORDER       (GLCDC_COLOR_ORDER_RGB)    /* Select Pixel Order of Output Data                           */
+
+#define     LCD_CH0_IN_GR1_VSIZE          (480u)                 /* Vertical width of image ddta (Graphic1)                    */
+#define     LCD_CH0_IN_GR1_HSIZE          (800u)                 /* Horizontall width of image data (Graphic1)                 */
+#define     LCD_CH0_IN_GR1_COORD_X        (0u)                   /* X-coordinate of display start position (Graphic1)          */
+#define     LCD_CH0_IN_GR1_COORD_Y        (0u)                   /* Y-coordinate of display start position (Graphic1)          */
+#define     LCD_CH0_IN_GR1_PBASE          (NULL)            /* Start address of the frame buffer                         */
+#define     LCD_CH0_IN_GR1_FORMAT         (GLCDC_IN_FORMAT_32BITS_ARGB8888) /*Color format of output data (Graphic1)             */
+#define     LCD_CH0_IN_GR1_LINEOFFSET     (3200u)                /* Macro line offset (Graphic1)                              */
+
+#define     LCD_CH0_IN_GR2_VSIZE          (480u)                 /* Vertical width of image ddta (Graphic2)                    */
+#define     LCD_CH0_IN_GR2_HSIZE          (800u)                 /* Horizontall width of image data (Graphic2)                 */
+#define     LCD_CH0_IN_GR2_COORD_X        (0u)                   /* X-coordinate of display start position (Graphic2)          */
+#define     LCD_CH0_IN_GR2_COORD_Y        (0u)                   /* Y-coordinate of display start position (Graphic2)          */
+#define     LCD_CH0_IN_GR2_PBASE          (0x00800000)            /* Start address of the frame buffer                         */
+#define     LCD_CH0_IN_GR2_FORMAT         (GLCDC_IN_FORMAT_CLUT8) /*Color format of output data (Graphic2)             */
+#define     LCD_CH0_IN_GR2_LINEOFFSET     (832u)                /* Macro line offset (Graphic2)                              */
+
+#define     LCD_CH0_DETECT_VPOS           (true)                 /* Enable VPOS Detect                                        */
+#define     LCD_CH0_INTERRUPT_VPOS_ENABLE (true)                 /* Enable VPOS Interrupt                                     */
+#define     LCD_CH0_CALLBACK_ENABLE       (true)                 /* Enable Callback Function                                  */
+#define     LCD_CH0_PCALLBACK             (_VSYNC_ISR)        /* name of Callback Function                                 */
+
+#endif
 
 #endif  /* LCD_TIMING_H */
 

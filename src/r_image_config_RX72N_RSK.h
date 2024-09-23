@@ -32,11 +32,13 @@
 Includes   <System Includes> , "Project Includes"
 ******************************************************************************/
 #include    "r_glcdc_rx_if.h"
+#include "r_lcd_timing_RX72N_RSK.h"
 
 /******************************************************************************
 Macro definitions
 ******************************************************************************/
 
+#if (IMG_SIZE_ACTIVE == IMG_SIZE_VGA)
 /* Calibration Route Setting */
 #define IMGC_OUTCTL_CALIB_ROUTE              (GLCDC_BRIGHTNESS_CONTRAST_TO_GAMMA)
 
@@ -155,5 +157,128 @@ Macro definitions
 #define IMGC_DITHER_2X2_PB                   (GLCDC_DITHERING_PATTERN_00)
 #define IMGC_DITHER_2X2_PC                   (GLCDC_DITHERING_PATTERN_10)
 #define IMGC_DITHER_2X2_PD                   (GLCDC_DITHERING_PATTERN_01)
+
+#elif (IMG_SIZE_ACTIVE == IMG_SIZE_WVGA)
+
+/* Calibration Route Setting */
+#define IMGC_OUTCTL_CALIB_ROUTE              (GLCDC_BRIGHTNESS_CONTRAST_TO_GAMMA)
+
+/* Brightness Setting */
+#define IMGC_BRIGHT_OUTCTL_ACTIVE            (true)
+#define IMGC_BRIGHT_OUTCTL_OFFSET_G          (512u)
+#define IMGC_BRIGHT_OUTCTL_OFFSET_B          (512u)
+#define IMGC_BRIGHT_OUTCTL_OFFSET_R          (512u)
+
+/* Contrast Setting */
+#define IMGC_CONTRAST_OUTCTL_ACTIVE          (true)
+#define IMGC_CONTRAST_OUTCTL_GAIN_G          (128u)
+#define IMGC_CONTRAST_OUTCTL_GAIN_B          (128u)
+#define IMGC_CONTRAST_OUTCTL_GAIN_R          (128u)
+
+/* Gamma correction */
+#define IMGC_GAMMA_ACTIVE                    (true)
+#define IMGC_GAMMA_G_GAIN_00                 (752u)
+#define IMGC_GAMMA_G_GAIN_01                 (872u)
+#define IMGC_GAMMA_G_GAIN_02                 (924u)
+#define IMGC_GAMMA_G_GAIN_03                 (960u)
+#define IMGC_GAMMA_G_GAIN_04                 (988u)
+#define IMGC_GAMMA_G_GAIN_05                 (1012u)
+#define IMGC_GAMMA_G_GAIN_06                 (1028u)
+#define IMGC_GAMMA_G_GAIN_07                 (1048u)
+#define IMGC_GAMMA_G_GAIN_08                 (1060u)
+#define IMGC_GAMMA_G_GAIN_09                 (1076u)
+#define IMGC_GAMMA_G_GAIN_10                 (1084u)
+#define IMGC_GAMMA_G_GAIN_11                 (1096u)
+#define IMGC_GAMMA_G_GAIN_12                 (1108u)
+#define IMGC_GAMMA_G_GAIN_13                 (1116u)
+#define IMGC_GAMMA_G_GAIN_14                 (1124u)
+#define IMGC_GAMMA_G_GAIN_15                 (1137u)
+#define IMGC_GAMMA_G_TH_01                   (64u)
+#define IMGC_GAMMA_G_TH_02                   (128u)
+#define IMGC_GAMMA_G_TH_03                   (192u)
+#define IMGC_GAMMA_G_TH_04                   (256u)
+#define IMGC_GAMMA_G_TH_05                   (320u)
+#define IMGC_GAMMA_G_TH_06                   (384u)
+#define IMGC_GAMMA_G_TH_07                   (448u)
+#define IMGC_GAMMA_G_TH_08                   (512u)
+#define IMGC_GAMMA_G_TH_09                   (576u)
+#define IMGC_GAMMA_G_TH_10                   (640u)
+#define IMGC_GAMMA_G_TH_11                   (704u)
+#define IMGC_GAMMA_G_TH_12                   (768u)
+#define IMGC_GAMMA_G_TH_13                   (832u)
+#define IMGC_GAMMA_G_TH_14                   (896u)
+#define IMGC_GAMMA_G_TH_15                   (960u)
+#define IMGC_GAMMA_B_GAIN_00                 (752u)
+#define IMGC_GAMMA_B_GAIN_01                 (872u)
+#define IMGC_GAMMA_B_GAIN_02                 (924u)
+#define IMGC_GAMMA_B_GAIN_03                 (960u)
+#define IMGC_GAMMA_B_GAIN_04                 (988u)
+#define IMGC_GAMMA_B_GAIN_05                 (1012u)
+#define IMGC_GAMMA_B_GAIN_06                 (1028u)
+#define IMGC_GAMMA_B_GAIN_07                 (1048u)
+#define IMGC_GAMMA_B_GAIN_08                 (1060u)
+#define IMGC_GAMMA_B_GAIN_09                 (1076u)
+#define IMGC_GAMMA_B_GAIN_10                 (1084u)
+#define IMGC_GAMMA_B_GAIN_11                 (1096u)
+#define IMGC_GAMMA_B_GAIN_12                 (1108u)
+#define IMGC_GAMMA_B_GAIN_13                 (1116u)
+#define IMGC_GAMMA_B_GAIN_14                 (1124u)
+#define IMGC_GAMMA_B_GAIN_15                 (1137u)
+#define IMGC_GAMMA_B_TH_01                   (64u)
+#define IMGC_GAMMA_B_TH_02                   (128u)
+#define IMGC_GAMMA_B_TH_03                   (192u)
+#define IMGC_GAMMA_B_TH_04                   (256u)
+#define IMGC_GAMMA_B_TH_05                   (320u)
+#define IMGC_GAMMA_B_TH_06                   (384u)
+#define IMGC_GAMMA_B_TH_07                   (448u)
+#define IMGC_GAMMA_B_TH_08                   (512u)
+#define IMGC_GAMMA_B_TH_09                   (576u)
+#define IMGC_GAMMA_B_TH_10                   (640u)
+#define IMGC_GAMMA_B_TH_11                   (704u)
+#define IMGC_GAMMA_B_TH_12                   (768u)
+#define IMGC_GAMMA_B_TH_13                   (832u)
+#define IMGC_GAMMA_B_TH_14                   (896u)
+#define IMGC_GAMMA_B_TH_15                   (960u)
+#define IMGC_GAMMA_R_GAIN_00                 (752u)
+#define IMGC_GAMMA_R_GAIN_01                 (872u)
+#define IMGC_GAMMA_R_GAIN_02                 (924u)
+#define IMGC_GAMMA_R_GAIN_03                 (960u)
+#define IMGC_GAMMA_R_GAIN_04                 (988u)
+#define IMGC_GAMMA_R_GAIN_05                 (1012u)
+#define IMGC_GAMMA_R_GAIN_06                 (1028u)
+#define IMGC_GAMMA_R_GAIN_07                 (1048u)
+#define IMGC_GAMMA_R_GAIN_08                 (1060u)
+#define IMGC_GAMMA_R_GAIN_09                 (1076u)
+#define IMGC_GAMMA_R_GAIN_10                 (1084u)
+#define IMGC_GAMMA_R_GAIN_11                 (1096u)
+#define IMGC_GAMMA_R_GAIN_12                 (1108u)
+#define IMGC_GAMMA_R_GAIN_13                 (1116u)
+#define IMGC_GAMMA_R_GAIN_14                 (1124u)
+#define IMGC_GAMMA_R_GAIN_15                 (1137u)
+#define IMGC_GAMMA_R_TH_01                   (64u)
+#define IMGC_GAMMA_R_TH_02                   (128u)
+#define IMGC_GAMMA_R_TH_03                   (192u)
+#define IMGC_GAMMA_R_TH_04                   (256u)
+#define IMGC_GAMMA_R_TH_05                   (320u)
+#define IMGC_GAMMA_R_TH_06                   (384u)
+#define IMGC_GAMMA_R_TH_07                   (448u)
+#define IMGC_GAMMA_R_TH_08                   (512u)
+#define IMGC_GAMMA_R_TH_09                   (576u)
+#define IMGC_GAMMA_R_TH_10                   (640u)
+#define IMGC_GAMMA_R_TH_11                   (704u)
+#define IMGC_GAMMA_R_TH_12                   (768u)
+#define IMGC_GAMMA_R_TH_13                   (832u)
+#define IMGC_GAMMA_R_TH_14                   (896u)
+#define IMGC_GAMMA_R_TH_15                   (960u)
+
+/* Dither Process */
+#define IMGC_DITHER_ACTIVE                   (true)
+#define IMGC_DITHER_MODE                     (GLCDC_DITHERING_MODE_2X2PATTERN)
+#define IMGC_DITHER_2X2_PA                   (GLCDC_DITHERING_PATTERN_11)
+#define IMGC_DITHER_2X2_PB                   (GLCDC_DITHERING_PATTERN_00)
+#define IMGC_DITHER_2X2_PC                   (GLCDC_DITHERING_PATTERN_10)
+#define IMGC_DITHER_2X2_PD                   (GLCDC_DITHERING_PATTERN_01)
+
+#endif
 
 #endif  /* IMG_CONFIG_H */

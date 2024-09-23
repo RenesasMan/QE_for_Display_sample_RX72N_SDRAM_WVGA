@@ -54,8 +54,8 @@
  Macro definitions
  ******************************************************************************/
 /* Image info definition */
-#define IMAGE_WIDTH          (480u)  /* Width of image used in this sample. */
-#define IMAGE_HEIGHT         (272u)  /* Height of image used in this sample. */
+#define IMAGE_WIDTH          (LCD_CH0_DISP_HW)  /* Width of image used in this sample. */
+#define IMAGE_HEIGHT         (LCD_CH0_DISP_VW)  /* Height of image used in this sample. */
 #define IMAGE_PIXEL_SIZE     (2u)    /* Graphic format: RGB565, 2 bytes per pixel */
 
 /* Frame buffer address of graphics 2 is the FRAME_BUFFER section top address */
@@ -66,6 +66,9 @@
 /* Pixel color code of RGB565 format, 2 bytes per pixel */
 #define PIXEL_COLOR_BLUE     (0x001F)
 #define PIXEL_COLOR_RED      (0xF800)
+
+#define BORDER_COLOR		PIXEL_COLOR_RED
+#define BACKGROUND_COLOR	PIXEL_COLOR_RED
 
 /* SDRAM Definitions */
 /* **** SDRAM address **** */
@@ -207,7 +210,7 @@ static void frame_buffer_initialize (void)
     /* Top line */
     for (i = 0; i < IMAGE_WIDTH; i++)
     {
-        *p_pixel_addr++ = PIXEL_COLOR_RED; /* Red color code(RGB565) */
+        *p_pixel_addr++ = BORDER_COLOR; /* Red color code(RGB565) */
     }
 
     for (i = 0; i < (IMAGE_HEIGHT - 2); i++)
@@ -218,18 +221,18 @@ static void frame_buffer_initialize (void)
             /*  Edge pixel (big endian) */
             if ((1 == j) || ((IMAGE_WIDTH - 2) == j))
             {
-                *p_pixel_addr++ = PIXEL_COLOR_RED; /* Red color code(RGB565) */
+                *p_pixel_addr++ = BORDER_COLOR; /* Red color code(RGB565) */
             }
 #else
             /*  Edge pixel (little endian) */
             if ((0 == j) || ((IMAGE_WIDTH - 1) == j))
             {
-                *p_pixel_addr++ = PIXEL_COLOR_RED; /* Red color code(RGB565) */
+                *p_pixel_addr++ = BORDER_COLOR; /* Red color code(RGB565) */
             }
 #endif
             else
             {
-                *p_pixel_addr++ = PIXEL_COLOR_BLUE; /* Blue color code(RGB565) */
+                *p_pixel_addr++ = BACKGROUND_COLOR; /* Blue color code(RGB565) */
             }
         }
     }
@@ -237,7 +240,7 @@ static void frame_buffer_initialize (void)
     /* End line */
     for (i = 0; i < IMAGE_WIDTH; i++)
     {
-        *p_pixel_addr++ = PIXEL_COLOR_RED; /* Red color code(RGB565) */
+        *p_pixel_addr++ = BORDER_COLOR; /* Red color code(RGB565) */
     }
 
 } /* End of function frame_buffer_initialize() */
